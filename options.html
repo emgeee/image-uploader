@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Image Uploader</title>
+
+    <link rel="stylesheet" type="text/css" href="css/ionic.min.css">
+    <link rel="stylesheet" type="text/css" href="css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="css/options.css">
+
+    <script src="lib/underscore-min.js"></script>
+    <script src="lib/angular.js"></script>
+
+    <script src="js/options.js"></script>
+
+  </head>
+  <body ng-app="PhotoSave" ng-controller="ConfigCtrl">
+
+    <div class="container">
+
+
+
+      <div class="header">
+        <img src="img/icon-48x48.png">
+
+        <h1>
+          Image Uploader
+        </h1>
+        <hr>
+      </div>
+
+
+
+      <div>
+        <h3>Linked Services</h3>
+
+        <p ng-hide="services.length">
+          You don't have any linked accounts, click the button below to link something.
+        </p>
+      </div>
+
+
+      <table class="service-box" ng-show="services.length">
+        <tr class="table-head">
+          <th>
+            Service
+          </th>
+          <th>
+            Enabled
+          </th>
+        </tr>
+        <tr ng-repeat="service in services" ng-mouseenter="showClosed=true" ng-mouseleave="showClosed=false">
+
+          <td class="logo">
+            <img ng-src="{{serviceList[service.name].img}}">
+          </td>
+
+          <td>
+            <label class="toggle toggle-balanced" ng-click="saveServices()">
+              <input ng-model="service.enabled" type="checkbox">
+              <div class="track">
+                <div class="handle"></div>
+              </div>
+            </label>
+
+
+            <i ng-show="showClosed" class="ion ion-ios7-close-outline" ng-click="unlinkAccount($index)"></i>
+          </td>
+        </tr>
+      </table>
+
+      <button authenticator services="services" service-list="serviceList" save="saveServices()" class="button button-positive">
+        Add a Service
+      </button>
+
+
+      <div class="footer">
+        <hr>
+
+        <p>
+          File uploads provided via the <a target="_blank" href="http://kloudless.com">Kloudless</a> API
+        </p>
+        <iframe src="http://ghbtns.com/github-btn.html?user=emgeee&repo=image-uploader&type=fork" allowtransparency="true" frameborder="0" scrolling="0" width="53" height="20"></iframe>
+    </div>
+
+    <!-- <br> -->
+    <!-- <br> -->
+    <!-- <br> -->
+    <!-- <br> -->
+    <!-- <button ng&#45;click="clearStorage()">clear</button> -->
+    <!-- {{services}} -->
+  </body>
+</html>
+
+
+
+
+
+
+
+
+

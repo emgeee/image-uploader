@@ -1,0 +1,75 @@
+body {
+  min-width: 357px;
+  overflow-x: hidden;
+  padding: 30px;
+
+
+}
+
+.container {
+  width: 340px;
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+
+  text-align: left;
+}
+
+p {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.service-box {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.service-box th{
+  /* text-align: left; */
+  font-size: 18px;
+}
+
+.service-box tr{
+}
+
+.service-box td{
+  padding-bottom: 5px;
+  width:33%;
+}
+
+.toggle {
+  vertical-align:middle;
+}
+
+.logo>img {
+  vertical-align:middle;
+  padding: 10px;
+}
+
+i.ion {
+  font-size: 28px;
+  cursor: pointer;
+  float: right;
+  position:absolute;
+  color: rgba(80,80,80,.6);
+  margin-left: 30px;
+}
+
+.header {
+}
+
+
+.header h1 {
+  display: inline-block;
+}
+
+.header img {
+  margin-top: 18px;
+  padding-right: 8px;
+  vertical-align: top;
+}
+
+.footer {
+  margin-top: 20px;
+}

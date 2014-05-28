@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name" : "Image Uploader",
-  "version" : "1.0.0",
+  "version" : "1.0.1",
   "description" : "Easily upload images on the web to clould storage using the Kloudless API",
   "homepage_url": "https://github.com/emgeee/image-uploader",
   "background" : { "scripts": [

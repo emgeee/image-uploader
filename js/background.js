@@ -3,20 +3,28 @@ var services = [];
 var appId = 'XCZD_i_hP9q0VH8haeM7UnEjhUihNj_Z6bFefaEdXsENUWjv';
 var baseUrl = 'https://api.kloudless.com/v0';
 
+function openOptionsPage(){
+  var optionsUrl = chrome.extension.getURL('options.html');
+
+  chrome.tabs.query({url: optionsUrl}, function(tabs) {
+    if (tabs.length) {
+      chrome.tabs.update(tabs[0].id, {active: true});
+    } else {
+      chrome.tabs.create({url: optionsUrl});
+    }
+  });
+}
 
 /**
- * Returns a handler which will open a new window when activated.
+ * Click handler to upload selected image
  */
 function getClickHandler() {
   return function (info, tab) {
 
+    if(services.length === 0) openOptionsPage();
+
     var url = info.srcUrl;
     var fileName = url.replace(/^.*[\\\/]/, '');
-    console.log(url);
-
-
-
-
 
     var getImg = new XMLHttpRequest();
     getImg.open("GET", url, true);
@@ -56,10 +64,6 @@ function getClickHandler() {
     };
 
     getImg.send();
-
-
-
-
   };
 };
 
@@ -74,15 +78,21 @@ chrome.contextMenus.create({
   "onclick": getClickHandler()
 });
 
+
+/**
+ * Load user from local storage
+ */
 chrome.storage.local.get('services', function (res) {
   if (res.services) {
     console.log('Loading... ', res.services);
     services = res.services;
-
   } else { console.log("No user..."); }
-
 });
 
+
+/**
+ * Watch for changes from the config page
+ */
 chrome.storage.onChanged.addListener(function(changes, namespace) {
     console.log(changes);
 
@@ -93,8 +103,13 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 });
 
 
-
-
-
-
-
+/**
+ * Open options page
+ */
+chrome.runtime.onInstalled.addListener(function(details){
+    if(details.reason == "install"){
+      openOptionsPage();
+    }else if(details.reason == "update"){
+      var thisVersion = chrome.runtime.getManifest().version;
+    }
+});
